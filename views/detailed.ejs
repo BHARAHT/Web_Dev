@@ -2,21 +2,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Pets</title>
-    <link rel="stylesheet" href="/Files/style.css">
+    <title>View Pet info</title>
+   <link rel="stylesheet" href="/Files/style.css">
 </head>
 <body>
-    <h1>List All Pets</h1>
-    <% for(pet of pets) { %>
+    <h2>Pet Info</h2>
     <div class="box">
     <p>Pet id : <%=pet.id%></p>
     <p>Pet Name : <%=pet.name%> </p>
     <p>Pet Species :<%=pet.species%> </p>
     <p>Pet Age : <%=pet.age%></p>
-    <br>
-    <a href="http://localhost:8000/pets/<%=pet.id%>">View</a>
     </div>
-
-<%  } %>
 </body>
 </html>

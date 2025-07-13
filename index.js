@@ -34,9 +34,19 @@ let pets=[
   isAdopted: false
 }
 ];
-app.listen(port,(req,res)=>{
+app.listen(port,()=>{
     console.log(`Server is running on port ${port}`);
 });
-app.get('/',(req,res)=>{
+//list all pets
+app.get('/pets',(req,res)=>{
     res.render('pets', { pets });
 });
+//show route
+app.get('/pets/:id',(req,res)=>{
+    const {id}=req.params;
+    const pet = pets.find(p=>p.id===id);
+    if(!pet)
+      return  res.status(404).json({error:"Pet not found"});
+    res.render( "detailed",{pet} );
+});
+
