@@ -1,6 +1,8 @@
 const express=require('express');
 const app=express();
 const port=8000;
+app.use(express.urlencoded({ extended: true }));
+
 const path = require('path');
 
 app.set('view engine', 'ejs');
@@ -42,6 +44,10 @@ app.get('/pets',(req,res)=>{
     res.render('pets', { pets });
 });
 //show route
+app.get("/pets/new", (req, res) => {
+  res.render("new"); // renders views/new.ejs
+});
+
 app.get('/pets/:id',(req,res)=>{
     const {id}=req.params;
     const pet = pets.find(p=>p.id===id);
@@ -49,4 +55,19 @@ app.get('/pets/:id',(req,res)=>{
       return  res.status(404).json({error:"Pet not found"});
     res.render( "detailed",{pet} );
 });
+//post or add new pet
+app.post('/pets',(req,res)=>{
+    const {name,species,age}=req.body;
+     if (typeof name !== 'string' || typeof species !== 'string') {
+    return res.status(400).send("Invalid input data");
+  }
+  const newPet = {
+    id:uuidv4(),
+    name,
+    species,
+    age:Number(age)
 
+  };
+  pets.push(newPet);
+  res.redirect("/pets");
+});
