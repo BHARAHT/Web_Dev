@@ -1,0 +1,12 @@
+.box{
+    background-color: #97969655;
+    color: black;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    width: 20rem;
+    display: flex;
+    flex-direction: column;
+}
+body{
+    background-color: #ffffff;
+}
