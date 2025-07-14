@@ -14,7 +14,8 @@
     <p>Pet Species :<%=pet.species%> </p>
     <p>Pet Age : <%=pet.age%></p>
     <br>
-    <a href="http://localhost:8000/pets/<%=pet.id%>">View</a>
+    <a href="http://localhost:8000/pets/<%=pet.id%>">View</a> 
+    <a href="pets/<%= pet.id %>/edit">Edit</a>
     </div>
 
 <%  } %>

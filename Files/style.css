@@ -4,9 +4,11 @@
     padding: 1rem;
     margin-bottom: 2rem;
     width: 20rem;
-    display: flex;
-    flex-direction: column;
+
 }
 body{
     background-color: #ffffff;
+}
+a{
+    margin-left: 2rem;
 }

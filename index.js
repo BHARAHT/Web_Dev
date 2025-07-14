@@ -2,6 +2,8 @@ const express=require('express');
 const app=express();
 const port=8000;
 app.use(express.urlencoded({ extended: true }));
+const methodOverride = require("method-override");
+app.use(methodOverride("_method"));
 
 const path = require('path');
 
@@ -69,5 +71,32 @@ app.post('/pets',(req,res)=>{
 
   };
   pets.push(newPet);
+  res.redirect("/pets");
+});
+
+//create edit route
+app.get("/pets/:id/edit",(req,res)=>{
+  const {id}=req.params;
+  const pet=pets.find(p=>p.id===id);
+  if(!pet)
+  {
+    return res.status(404).send("Pet not found");
+  }
+  res.render("edit",{pet});
+});
+app.put("/pets/:id",(req,res)=>{
+    const {id}=req.params;
+    const {name,species,age}=req.body;
+  const pet=pets.find(p=>p.id===id);
+  if(!pet)
+  {
+    return res.status(404).send("Pet not found");
+  }
+   if (typeof name !== 'string' || typeof species !== 'string' || isNaN(Number(age))) {
+    return res.status(400).send("Invalid input");
+  }
+   pet.name = name;
+  pet.species = species;
+  pet.age = Number(age);
   res.redirect("/pets");
 });
