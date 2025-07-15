@@ -100,3 +100,14 @@ app.put("/pets/:id",(req,res)=>{
   pet.age = Number(age);
   res.redirect("/pets");
 });
+
+app.delete("/pets/:id",(req,res)=>{
+  const {id}=req.params;
+  const index=pets.findIndex(p=>p.id===id);
+  if(index===-1)
+    {
+      return res.status(404).send("Pet not found");
+      }
+      pets.splice(index,1);
+      res.redirect("/pets");
+})
